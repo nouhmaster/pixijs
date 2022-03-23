@@ -45,7 +45,15 @@ import { deprecation } from '@pixi/utils';
  * ```
  *
  * @memberof PIXI
+ *
  */
+ export interface Options {
+    x: any,
+    y: any,
+    height: any,
+    scall: any,
+    width:any
+ }
 export class RenderTexture extends Texture
 {
     public baseTexture: BaseRenderTexture;

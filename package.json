@@ -99,5 +99,8 @@
     "tsconfig-paths": "^3.10.1",
     "typescript": "^3.9.5",
     "workspaces-run": "^1.0.1"
+  },
+  "dependencies": {
+    "pixi.js": "file:bundles/pixi.js"
   }
 }
