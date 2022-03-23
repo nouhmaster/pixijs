@@ -2,7 +2,6 @@ import { CanvasRenderTarget } from '@pixi/utils';
 import { Rectangle } from '@pixi/math';
 import { Options, RenderTexture } from '@pixi/core';
 
-
 import type { Renderer, IRendererPlugin } from '@pixi/core';
 import { DisplayObject } from '@pixi/display';
 
@@ -32,7 +31,7 @@ const BYTES_PER_PIXEL = 4;
  * @memberof PIXI
  */
 
- /*export interface Options {
+/* export interface Options {
     x: any,
     y: any,
     height: any,
@@ -192,8 +191,8 @@ export class Extract implements IRendererPlugin
      *  to convert. If left empty will use the main renderer
      * @return - One-dimensional array containing the pixel data of the entire texture
      */
-    
-     //any { x: double; y: double; scale : double; Width:double;height :double}
+
+    // any { x: double; y: double; scale : double; Width:double;height :double}
     public pixels(target?: DisplayObject|RenderTexture, opt?: Options): Uint8Array
     {
         const renderer = this.renderer;
@@ -208,12 +207,11 @@ export class Extract implements IRendererPlugin
             {
                 renderTexture = target;
             }
-            else if(target instanceof DisplayObject)
+            else if (target instanceof DisplayObject)
             {
                 renderTexture = this.renderer.generateTexture(target);
                 generated = true;
             }
-            
         }
 
         if (renderTexture)
@@ -223,7 +221,7 @@ export class Extract implements IRendererPlugin
                 resolution = opt.scall;
                 frame = renderTexture.frame;
 
-            // bind the buffer
+                // bind the buffer
                 renderer.renderTexture.bind(renderTexture);
             }
             else
@@ -235,28 +233,26 @@ export class Extract implements IRendererPlugin
                 renderer.renderTexture.bind(renderTexture);
             }
         }
-        
+
+        else
+        if (opt)
+        {
+            resolution = opt.scall;
+
+            frame = TEMP_RECT;
+            frame.width = opt.width;
+            frame.height = opt.height;
+            renderer.renderTexture.bind(null);
+        }
         else
         {
-            if(opt)
-            {
-                resolution = opt.scall
+            resolution = renderer.resolution;
 
-                frame = TEMP_RECT;
-                frame.width = opt.width;
-                frame.height = opt.height;
-                renderer.renderTexture.bind(null);
-            }
-            else
-            {
-                resolution = renderer.resolution;
+            frame = TEMP_RECT;
+            frame.width = renderer.width;
+            frame.height = renderer.height;
 
-                frame = TEMP_RECT;
-                frame.width = renderer.width;
-                frame.height = renderer.height;
-
-                renderer.renderTexture.bind(null);
-            }
+            renderer.renderTexture.bind(null);
         }
 
         const width = frame.width * resolution;

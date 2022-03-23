@@ -47,12 +47,12 @@ import { deprecation } from '@pixi/utils';
  * @memberof PIXI
  *
  */
- export interface Options {
+export interface Options {
     x: any,
     y: any,
     height: any,
     scall: any,
-    width:any
+    width: any
  }
 export class RenderTexture extends Texture
 {
